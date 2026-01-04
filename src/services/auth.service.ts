@@ -1,6 +1,6 @@
-import { prismaClient } from "../../prisma/prisma";
-import { User } from "../../prisma/prisma-client/client";
+import { User } from "../../generated/prisma/client";
 import { RegisterInput } from "../dtos/input/auth.input";
+import { prismaClient } from "../libs/prisma";
 import { hashPassword } from "../utils/hash";
 import { signJwt } from "../utils/jwt";
 
