@@ -37,6 +37,8 @@ type Mutation {
 
 - **Queries**: Busca os dados do servidor (como uma requisição GET no REST).
 
+Anotação mental importante: Sempre para não ter erros no schema é necessário ter pelo menos uma query definida.
+
 ```graphql
 #Busca
 query {
@@ -71,7 +73,7 @@ query {
 
 ```graphql
 mutation {
-  createUser(name: "João", email: "joao@teste.com") {
+  createUser(name: "Fulano", email: "fulano@gmail.com") {
     id
     name
     email
