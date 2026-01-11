@@ -4,14 +4,14 @@ import { CreateIdeaInput, UpdateIdeaInput } from "../dtos/input/idea.input";
 import { IdeaService } from "../services/idea.service";
 import { GqlUser } from "../graphql/decorators/user.decorator";
 import { IsAuth } from "../middlewares/auth.middleware";
-import { userService } from "../services/user.service";
+import { UserService } from "../services/user.service";
 import { UserModel } from "../models/user.model";
 
 @Resolver(() => IdeaModel)
 @UseMiddleware(IsAuth)
 export class IdeaResolver {
   private ideaService = new IdeaService();
-  private userService = new userService();
+  private userService = new UserService();
 
   @Mutation(() => IdeaModel)
   async createIdea(

@@ -51,4 +51,12 @@ export class IdeaService {
       }
     })
   }
+
+  async findIdeaById(id: string) {
+    return prismaClient.idea.findUnique({
+      where: { 
+        id
+      }
+    })
+  }
 }

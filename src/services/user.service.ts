@@ -1,7 +1,7 @@
 import { CreateUserInput } from "../dtos/input/user.input";
 import { prismaClient } from "../libs/prisma";
 
-export class userService {
+export class UserService {
   async createUser(data: CreateUserInput) {
     const findUser = await prismaClient.user.findUnique({
       where: {
