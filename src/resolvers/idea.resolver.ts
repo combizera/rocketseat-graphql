@@ -6,12 +6,15 @@ import { GqlUser } from "../graphql/decorators/user.decorator";
 import { IsAuth } from "../middlewares/auth.middleware";
 import { UserService } from "../services/user.service";
 import { UserModel } from "../models/user.model";
+import { CommentModel } from "../models/comment.model";
+import { CommentService } from "../services/comment.service";
 
 @Resolver(() => IdeaModel)
 @UseMiddleware(IsAuth)
 export class IdeaResolver {
   private ideaService = new IdeaService();
   private userService = new UserService();
+  private commentService = new CommentService();  
 
   @Mutation(() => IdeaModel)
   async createIdea(
@@ -41,6 +44,11 @@ export class IdeaResolver {
   @Query(() => [IdeaModel])
   async listIdeas(): Promise<IdeaModel[]> {
     return this.ideaService.listIdeas();
+  }
+
+  @FieldResolver(() => [CommentModel])
+  async comments(@Root() idea: IdeaModel): Promise<CommentModel[]> {
+    return this.commentService.listCommentsByIdea(idea.id);
   }
 
   @FieldResolver(() => UserModel)
