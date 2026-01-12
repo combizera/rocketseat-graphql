@@ -42,6 +42,8 @@ type IdeaModel {
   id: ID!
   title: String!
   updatedAt: DateTimeISO!
+  votes: [VoteModel!]
+  votesCount: Float
 }
 
 input LoginInput {
@@ -62,6 +64,7 @@ type Mutation {
   deleteIdea(id: String!): Boolean!
   login(data: LoginInput!): LoginOutput!
   register(data: RegisterInput!): RegisterOutput!
+  toggleVote(ideaId: String!): Boolean!
   updateIdea(data: UpdateIdeaInput!, id: String!): IdeaModel!
 }
 
@@ -94,4 +97,12 @@ type UserModel {
   name: String!
   password: String
   updatedAt: DateTimeISO!
+}
+
+type VoteModel {
+  id: ID!
+  idea: IdeaModel
+  ideaId: String!
+  user: UserModel
+  userId: String!
 }

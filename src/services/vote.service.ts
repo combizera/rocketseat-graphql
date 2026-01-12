@@ -31,7 +31,7 @@ export class VoteService {
     return true
   }
 
-  async listVotesByIdea(ideaId: string) {
+  async findVotesByIdea(ideaId: string) {
     return prismaClient.vote.findMany({
       where: {
         ideaId,
